@@ -1,0 +1,110 @@
+// ============================================
+// Typography Styles
+// ============================================
+
+@use "../abstracts" as *;
+
+// Títulos
+h1 {
+  @include text-title;
+}
+
+h2 {
+  @include text-title-secondary;
+}
+
+h3 {
+  @include text-subtitle;
+}
+
+h4 {
+  @include text-subtitle-small;
+}
+
+h5,
+h6 {
+  @include text-body;
+  font-weight: $font-weight-semibold;
+}
+
+// Texto de cuerpo
+p {
+  @include text-body;
+}
+
+// Texto pequeño
+small {
+  @include text-body-small;
+}
+
+// Enlaces
+a {
+  @include text-link;
+}
+
+// Texto enfatizado
+strong,
+b {
+  @include text-emphasis;
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+// Listas
+ul,
+ol {
+  @include text-body;
+  padding-left: $spacing-lg;
+}
+
+li {
+  margin-bottom: $spacing-xs;
+}
+
+// Texto de código
+code,
+kbd,
+samp,
+pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: $font-size-sm;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 0.2rem 0.4rem;
+  border-radius: $border-radius-xs;
+}
+
+// Citas
+blockquote {
+  @include text-body;
+  border-left: $border-width-thick solid $color-border-accent;
+  padding-left: $spacing-md;
+  margin: $spacing-md 0;
+  font-style: italic;
+  color: $color-text-secondary;
+}
+
+// Labels y captions
+label,
+caption,
+figcaption {
+  @include text-caption;
+}
+
+// Inputs y textareas
+input,
+textarea,
+select {
+  @include text-body;
+
+  &::placeholder {
+    @include text-placeholder;
+  }
+}
+
+// Botones
+button {
+  @include text-button;
+}

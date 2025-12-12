@@ -10,6 +10,7 @@ import type { MenuTemplateContent } from '../schemas/templates/menu';
  * - Footer con información de contacto y CTAs
  */
 export const menuExample: MenuTemplateContent = {
+  imageUrl: 'https://via.placeholder.com/150', // URL de ejemplo
   headerTitle: 'La Cocina de Lucy',
   headerSubtitle: 'Menú Navideño 2025',
   headerText: 'SABOR Y TRADICIÓN',

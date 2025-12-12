@@ -49,9 +49,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `homePageV1Template`: Template para home pages con hero section y bloques de navegación
 - `HomePageV1Template` component: Placeholder component for home-page-v1 rendering
 - Example content for both new templates
+- **Restructured components**: Each component now has its own folder with `.tsx` and `.module.css` files
+- **MenuTemplate visual design**: Full implementation with CSS Modules (Christmas menu theme)
+- **CSS Modules support**: Build now generates `lp-templates.css` file (22KB, 3.75KB gzipped)
+- **imageUrl prop**: MenuTemplate now supports optional logo/image
+
+### Changed
+- Migrated from inline styles to CSS Modules for better maintainability
+- Components structure: `src/components/[ComponentName]/[ComponentName].tsx`
+- Each component exports through its own `index.ts` file
 
 ### Planned
-- Visual design implementation for all templates
+- Visual design implementation for HeroBeneficiosTemplate and HomePageV1Template
 - Form builder utilities for admin panel
 - Validation error messages in Spanish
 - Template preview component

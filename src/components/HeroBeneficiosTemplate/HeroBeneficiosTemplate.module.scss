@@ -1,0 +1,65 @@
+@use "../../styles/abstracts" as *;
+@use "../../styles/components/pages" as p;
+@use "../../styles/components/section" as s;
+@use "../../styles/components/cart" as c;
+@use "../../styles/components/title" as t;
+@use "../../styles/components/button-new" as b;
+// ============================================
+// LANDING PAGE STYLES
+// ============================================
+
+.landing_page {
+  @include p.init-page();
+  // ============================================
+  // HERO SECTION
+  // ============================================
+  &__hero {
+    @include s.hero-init();
+  }
+
+  &__title {
+    @include t.title-gradient-white-gold();
+  }
+
+  &__title_paragraph {
+    @include text-body;
+  }
+
+  // ============================================
+  // ASESORIA SECTION
+  // ============================================
+  &__asesoria {
+    @include s.section-black-gold();
+  }
+
+  &__subtitle {
+    @include text-title-secondary;
+    color: $color-text-accent;
+  }
+
+  &__subtitle_paragraph {
+    @include text-body-small;
+  }
+
+  // ============================================
+  // VENTAJAS SECTION
+  // ============================================
+  &__ventajas {
+    @include s.hero-init();
+  }
+
+  &__ventaja_item {
+    @include c.cart-info-1;
+  }
+
+  // ============================================
+  // CTA BUTTON
+  // ============================================
+  &__cta {
+    @include b.button-test1;
+  }
+}
+
+// ============================================
+// ANIMATIONS
+// ============================================

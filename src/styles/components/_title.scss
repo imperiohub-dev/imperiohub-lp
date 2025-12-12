@@ -1,0 +1,36 @@
+@use "../../styles/abstracts" as *;
+@use "./animation" as *;
+@mixin title-gradient(
+  $deg: 135deg,
+  $c1: $color-text-primary,
+  $cp1: 0%,
+  $c2: $color-text-accent,
+  $cp2: 100%,
+  $g: $spacing-xxxl
+) {
+  @include text-title;
+  background: linear-gradient($deg, $c1 $cp1, $c2 $cp2);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  max-width: 900px;
+  animation: fadeInUp 0.8s ease-out;
+
+  @include responsive("tablet") {
+    font-size: 4.8rem;
+  }
+
+  @include responsive("laptop") {
+    font-size: 5.6rem;
+  }
+}
+@mixin title-gradient-white-gold() {
+  @include title-gradient(
+    $deg: 135deg,
+    $c1: $color-text-primary,
+    $cp1: 0%,
+    $c2: $color-text-accent,
+    $cp2: 100%,
+    $g: $spacing-xxxl
+  );
+}

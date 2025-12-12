@@ -1,0 +1,112 @@
+// ============================================
+// HOME PAGE V1 - PLACEHOLDER
+// Estilos temporales hasta que tengas el diseño final
+// ============================================
+@use '../../styles/themes/home-v1' as v;
+@use '../../styles/mixins/utils' as m;
+
+.container {
+  padding: clamp(v.$spacing-xl, 5vw, v.$spacing-xxl) clamp(v.$spacing-md, 3vw, v.$spacing-lg);
+  font-family: v.$font-family-primary;
+  max-width: 1200px;
+  margin: 0 auto;
+  @include m.box-border;
+}
+
+.hero {
+  @include m.flex-column-center;
+  text-align: center;
+  margin-bottom: v.$spacing-xxl;
+}
+
+.heroTitle {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: v.$font-weight-bold;
+  margin-bottom: v.$spacing-md;
+  color: #333;
+}
+
+.heroSubtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: v.$spacing-xl;
+  color: #666;
+}
+
+.heroCta {
+  display: inline-block;
+  padding: v.$spacing-md v.$spacing-lg;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: v.$border-radius-md;
+  font-weight: v.$font-weight-semibold;
+  @include m.transition(all);
+
+  &:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+  }
+}
+
+.secondSection {
+  margin-top: v.$spacing-xxl;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: v.$font-weight-semibold;
+  margin-bottom: v.$spacing-md;
+  text-align: center;
+  color: #333;
+}
+
+.sectionSubtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  margin-bottom: v.$spacing-xl;
+  text-align: center;
+  color: #666;
+}
+
+.navigationGrid {
+  @include m.grid-auto-fit(280px);
+  gap: v.$spacing-lg;
+  margin-top: v.$spacing-xl;
+}
+
+.navBlock {
+  padding: v.$spacing-lg;
+  background: #f5f5f5;
+  border-radius: v.$border-radius-md;
+  @include m.transition(transform);
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.navBlockTitle {
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: v.$font-weight-semibold;
+  margin-bottom: v.$spacing-sm;
+  color: #333;
+}
+
+.navBlockSubtitle {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  margin-bottom: v.$spacing-md;
+  color: #666;
+}
+
+.navBlockLink {
+  display: inline-block;
+  margin-top: v.$spacing-sm;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: v.$font-weight-medium;
+  @include m.transition(color);
+
+  &:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+}

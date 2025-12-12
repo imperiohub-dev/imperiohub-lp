@@ -12,6 +12,12 @@ export const menuTemplate: LandingPageTemplate = {
   schema: {
     fields: [
       {
+        name: 'imageUrl',
+        label: 'URL del logo/imagen (opcional)',
+        type: 'string',
+        required: false,
+      },
+      {
         name: 'headerTitle',
         label: 'Título del encabezado',
         type: 'string',
@@ -210,6 +216,7 @@ export interface CTAButton {
 }
 
 export interface MenuTemplateContent {
+  imageUrl?: string;
   headerTitle: string;
   headerSubtitle: string;
   headerText: string;

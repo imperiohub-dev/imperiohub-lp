@@ -69,6 +69,10 @@ function DynamicForm({ template }) {
 Consume: Componentes React (para renderizar landing pages)
 
 ```typescript
+// 1. Importar el CSS (una sola vez en tu app)
+import '@imperiohub/lp-templates/dist/lp-templates.css';
+
+// 2. Importar el TemplateRenderer
 import { TemplateRenderer } from '@imperiohub/lp-templates';
 
 // Recibe de la API: { templateSlug, content }
@@ -81,6 +85,8 @@ function LandingPage({ data }) {
   );
 }
 ```
+
+**Nota**: Los estilos CSS vienen incluidos en el paquete. Solo necesitas importar el archivo CSS una vez en tu aplicación (generalmente en el archivo principal como `_app.tsx` o `main.tsx`).
 
 ## Estructura del Paquete
 

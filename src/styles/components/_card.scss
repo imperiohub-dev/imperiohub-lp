@@ -1,0 +1,81 @@
+// ============================================
+// CARD MIXINS - Componentes de cajas/tarjetas
+// ============================================
+@use '../variables' as v;
+@use '../mixins/utils' as m;
+
+/// Card base con hover effect
+@mixin base {
+  width: 100%;
+  padding: clamp(v.$spacing-md, 3vw, v.$spacing-lg);
+  background: v.$color-bg-item;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: clamp(v.$border-radius-sm, 1vw, v.$border-radius-md);
+  @include m.box-border;
+  @include m.transition(all);
+
+  &:hover {
+    background: v.$color-bg-item-hover;
+    border-color: rgba(v.$color-accent, 0.3);
+    transform: translateX(clamp(2px, 0.5vw, 4px));
+  }
+
+  @include m.tablet {
+    padding: clamp(v.$spacing-lg, 3.5vw, v.$spacing-xl);
+  }
+}
+
+/// Card con gradiente (para combos)
+@mixin gradient {
+  @include base;
+  background: linear-gradient(135deg, rgba(139, 0, 0, 0.12) 0%, rgba(0, 100, 0, 0.12) 100%);
+  border: clamp(1.5px, 0.4vw, 2px) solid v.$color-border-accent;
+  border-radius: clamp(v.$border-radius-md, 1vw, v.$border-radius-lg);
+  padding: clamp(v.$spacing-lg, 4.5vw, v.$spacing-xl);
+
+  &:hover {
+    border-color: v.$color-border-accent-strong;
+    box-shadow: 0 8px 24px rgba(v.$color-accent, 0.2);
+    transform: translateY(clamp(-2px, -0.5vw, -4px));
+  }
+
+  @include m.tablet {
+    padding: clamp(v.$spacing-xl, 5vw, v.$spacing-xxl);
+  }
+}
+
+/// Card header con título y precio
+@mixin header {
+  @include m.flex(column, flex-start, center, nowrap);
+  width: 100%;
+  margin-bottom: clamp(v.$spacing-sm, 2vw, v.$spacing-md);
+  padding-bottom: clamp(v.$spacing-sm, 2vw, v.$spacing-md);
+  border-bottom: 1px solid v.$color-border-accent;
+  gap: clamp(v.$spacing-xs, 1.5vw, v.$spacing-sm);
+
+  @include m.tablet {
+    @include m.flex(column, space-between, center, wrap);
+    gap: clamp(v.$spacing-sm, 2vw, v.$spacing-md);
+  }
+}
+
+/// Card con categoría destacada
+@mixin category {
+  width: 100%;
+  margin-bottom: clamp(v.$spacing-md, 4vw, v.$spacing-xl);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/// Grid de cards
+@mixin grid {
+  @include m.flex-column-start;
+  width: 100%;
+  gap: clamp(v.$spacing-md, 4vw, v.$spacing-lg);
+
+  @include m.tablet {
+    @include m.grid-auto-fit(280px, clamp(v.$spacing-lg, 4vw, v.$spacing-xl));
+  }
+}

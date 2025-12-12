@@ -1,0 +1,18 @@
+@use "../../styles/abstracts" as *;
+
+@mixin init-page(
+  $deg: 180deg,
+  $c1: $color-background-primary,
+  $cp1: 0%,
+  $c2: $color-background-secondary,
+  $cp2: 100%,
+  $g: $spacing-xxxl
+) {
+  @include display-column-flex-start();
+  min-height: 100vh;
+  padding: $spacing-xl $spacing-md;
+  background: linear-gradient($deg, $c1 $cp1, $c2 $cp2);
+  gap: $g;
+  max-width: 1200px;
+  margin: 0 auto;
+}

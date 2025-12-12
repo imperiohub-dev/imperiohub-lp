@@ -1,0 +1,91 @@
+// ============================================
+// BUTTON MIXINS - Legacy (para compatibilidad con MenuTemplate)
+// ============================================
+@use '../variables' as v;
+@use '../mixins/utils' as m;
+
+/// Botón base
+@mixin base {
+  display: inline-block;
+  padding: clamp(v.$spacing-sm, 2.5vw, v.$spacing-md) clamp(v.$spacing-md, 4vw, v.$spacing-lg);
+  font-size: clamp(1.4rem, 3.5vw, 1.6rem);
+  font-weight: v.$font-weight-semibold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: clamp(v.$border-radius-sm, 1vw, v.$border-radius-md);
+  cursor: pointer;
+  @include m.transition(all);
+  @include m.box-border;
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  @include m.tablet {
+    padding: clamp(v.$spacing-md, 3vw, v.$spacing-lg) clamp(v.$spacing-lg, 5vw, v.$spacing-xl);
+    font-size: clamp(1.6rem, 2.5vw, 2rem);
+  }
+}
+
+/// Botón primary (dorado)
+@mixin primary($bg-color: v.$color-accent, $text-color: v.$color-text-inverse) {
+  @include base;
+  background: linear-gradient(135deg, v.$color-accent-dark 0%, $bg-color 100%);
+  color: $text-color;
+  box-shadow: v.$shadow-md;
+
+  &:hover {
+    transform: translateY(clamp(-2px, -0.5vw, -3px)) scale(1.02);
+    box-shadow: v.$shadow-lg, 0 0 20px rgba($bg-color, 0.4);
+  }
+}
+
+/// Botón secondary (outline)
+@mixin secondary {
+  @include base;
+  background: transparent;
+  color: v.$color-accent;
+  border: clamp(1.5px, 0.3vw, 2px) solid v.$color-accent;
+
+  &:hover {
+    background: rgba(v.$color-accent, 0.1);
+    border-color: v.$color-accent-dark;
+    transform: translateY(clamp(-2px, -0.5vw, -3px));
+  }
+}
+
+/// Botón text (link style)
+@mixin text {
+  display: inline-block;
+  padding: clamp(v.$spacing-xs, 1.5vw, v.$spacing-sm);
+  font-size: clamp(1.3rem, 3vw, 1.5rem);
+  font-weight: v.$font-weight-medium;
+  color: v.$color-accent;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  @include m.transition(color);
+
+  &:hover {
+    color: v.$color-accent-dark;
+    text-decoration: underline;
+  }
+
+  @include m.tablet {
+    font-size: clamp(1.5rem, 2.2vw, 1.7rem);
+  }
+}
+
+/// Group de botones (layout)
+@mixin group {
+  @include m.flex(column, center, stretch, nowrap);
+  width: 100%;
+  gap: clamp(v.$spacing-sm, 3vw, v.$spacing-md);
+
+  @include m.tablet {
+    @include m.flex(row, center, center, wrap);
+    gap: clamp(v.$spacing-md, 4vw, v.$spacing-lg);
+  }
+}

@@ -1,0 +1,38 @@
+// ============================================
+// HOME PAGE V1 THEME
+// Usa variables globales con mapeo legacy
+// ============================================
+
+@use "../abstracts/variables" as base;
+
+// Mapeo de variables legacy (mismo esquema que menu-template pero con valores base)
+$spacing-xs: 0.5rem !default;
+$spacing-sm: 1rem !default;
+$spacing-md: 1.5rem !default;
+$spacing-lg: 2rem !default;
+$spacing-xl: 3rem !default;
+$spacing-xxl: 4rem !default;
+
+$font-family-primary: base.$font-family-primary !default;
+$font-family-secondary: base.$font-family-secondary !default;
+
+$font-weight-regular: base.$font-weight-regular !default;
+$font-weight-medium: base.$font-weight-medium !default;
+$font-weight-semibold: base.$font-weight-semibold !default;
+$font-weight-bold: base.$font-weight-bold !default;
+
+$border-radius-sm: base.$border-radius-sm !default;
+$border-radius-md: base.$border-radius-md !default;
+$border-radius-lg: base.$border-radius-lg !default;
+$border-radius-xl: base.$border-radius-xl !default;
+
+$transition-fast: base.$transition-fast !default;
+$transition-normal: base.$transition-normal !default;
+$transition-slow: base.$transition-slow !default;
+
+$breakpoint-tablet: 768px !default;
+$breakpoint-laptop: 1024px !default;
+$breakpoint-desktop: 1440px !default;
+
+// Re-exporta mixins
+@forward "../abstracts/mixin";

@@ -1,0 +1,246 @@
+// ============================================
+// MIXINS UNIVERSALES - Utilidades
+// ============================================
+@use '../variables' as v;
+
+// ===== FLEXBOX MIXINS =====
+
+/// Flexbox básico con control completo
+/// @param {String} $direction - flex-direction
+/// @param {String} $justify - justify-content
+/// @param {String} $align - align-items
+/// @param {String} $wrap - flex-wrap
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+/// Flex column centrado
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/// Flex column con items al inicio
+@mixin flex-column-start {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/// Flex row centrado
+@mixin flex-row-center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+/// Flex row con espacio entre items
+@mixin flex-row-between {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// ===== GRID MIXINS =====
+
+/// Grid básico con columnas auto-fit
+/// @param {String} $min-width - Ancho mínimo de columnas
+/// @param {String} $gap - Gap entre items
+@mixin grid-auto-fit($min-width: 280px, $gap: 1rem) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, $min-width), 1fr));
+  gap: $gap;
+}
+
+/// Grid básico con columnas auto-fill
+/// @param {String} $min-width - Ancho mínimo de columnas
+/// @param {String} $gap - Gap entre items
+@mixin grid-auto-fill($min-width: 280px, $gap: 1rem) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, $min-width), 1fr));
+  gap: $gap;
+}
+
+/// Grid con número específico de columnas
+/// @param {Number} $columns - Número de columnas
+/// @param {String} $gap - Gap entre items
+@mixin grid-columns($columns: 3, $gap: 1rem) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+// ===== RESPONSIVE MIXINS =====
+
+/// Media query para tablet y arriba
+@mixin tablet {
+  @media (min-width: v.$breakpoint-tablet) {
+    @content;
+  }
+}
+
+/// Media query para laptop y arriba
+@mixin laptop {
+  @media (min-width: v.$breakpoint-laptop) {
+    @content;
+  }
+}
+
+/// Media query para desktop y arriba
+@mixin desktop {
+  @media (min-width: v.$breakpoint-desktop) {
+    @content;
+  }
+}
+
+/// Media query personalizada
+/// @param {String} $breakpoint - Breakpoint personalizado
+@mixin responsive($breakpoint) {
+  @if $breakpoint == 'tablet' {
+    @include tablet {
+      @content;
+    }
+  } @else if $breakpoint == 'laptop' {
+    @include laptop {
+      @content;
+    }
+  } @else if $breakpoint == 'desktop' {
+    @include desktop {
+      @content;
+    }
+  }
+}
+
+// ===== POSITIONING MIXINS =====
+
+/// Centrado absoluto
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/// Centrado vertical
+@mixin absolute-center-vertical {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/// Centrado horizontal
+@mixin absolute-center-horizontal {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/// Posicionamiento absoluto completo
+@mixin absolute-full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// ===== TEXT MIXINS =====
+
+/// Truncar texto con ellipsis
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/// Limitar número de líneas
+/// @param {Number} $lines - Número de líneas
+@mixin line-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// ===== BOX MIXINS =====
+
+/// Box sizing border-box
+@mixin box-border {
+  box-sizing: border-box;
+}
+
+/// Reset de lista
+@mixin list-reset {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/// Ocultar scroll
+@mixin hide-scroll {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+}
+
+// ===== TRANSITION MIXINS =====
+
+/// Transición suave estándar
+/// @param {String} $property - Propiedad a animar
+/// @param {String} $duration - Duración (default: normal)
+@mixin transition($property: all, $duration: v.$transition-normal) {
+  transition: $property $duration;
+}
+
+/// Múltiples transiciones
+/// @param {List} $transitions - Lista de transiciones
+@mixin transitions($transitions...) {
+  transition: $transitions;
+}
+
+// ===== ASPECT RATIO =====
+
+/// Mantener aspect ratio
+/// @param {Number} $width - Ancho
+/// @param {Number} $height - Alto
+@mixin aspect-ratio($width: 16, $height: 9) {
+  aspect-ratio: $width / $height;
+}
+
+// ===== HOVER EFFECTS =====
+
+/// Hover con transformación
+/// @param {String} $transform - Transformación CSS
+@mixin hover-transform($transform: translateY(-2px)) {
+  transition: transform v.$transition-normal;
+
+  &:hover {
+    transform: $transform;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+/// Hover con opacidad
+/// @param {Number} $opacity - Opacidad al hacer hover
+@mixin hover-opacity($opacity: 0.8) {
+  transition: opacity v.$transition-fast;
+
+  &:hover {
+    opacity: $opacity;
+  }
+}

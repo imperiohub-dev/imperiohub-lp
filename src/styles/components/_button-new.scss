@@ -1,0 +1,58 @@
+@use "../abstracts" as *;
+@use "sass:color";
+@mixin button-test1() {
+  @include text-button;
+  background: linear-gradient(
+    135deg,
+    $color-accent 0%,
+    color.adjust($color-accent, $lightness: -10%) 100%
+  );
+  color: $color-text-inverse;
+  padding: $spacing-lg $spacing-xl;
+  border: none;
+  border-radius: $border-radius-lg;
+  cursor: pointer;
+  font-size: $font-size-md;
+  font-weight: $font-weight-bold;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  box-shadow: $shadow-lg;
+  transition: all $transition-normal;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.8s ease-out 1.8s both;
+  margin-top: $spacing-lg;
+
+  // Efecto de brillo en hover
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(white, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width $transition-slow, height $transition-slow;
+  }
+
+  &:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 40px rgba($color-accent, 0.4);
+
+    &::before {
+      width: 400px;
+      height: 400px;
+    }
+  }
+
+  &:active {
+    transform: translateY(-2px) scale(0.98);
+  }
+
+  @include responsive("tablet") {
+    padding: $spacing-xl $spacing-xxl;
+    font-size: $font-size-lg;
+  }
+}

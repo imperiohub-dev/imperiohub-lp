@@ -1,0 +1,202 @@
+@use "./variables" as v;
+@use "../components/animation" as *;
+@use "sass:map";
+@use "sass:color";
+// ============================================
+// RESPONSIVE MIXIN
+// ============================================
+
+// Mixin responsive mobile-first
+@mixin responsive($breakpoint) {
+  @if map.has-key(v.$breakpoints, $breakpoint) {
+    @media (min-width: map.get(v.$breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "El breakpoint '#{$breakpoint}' no existe. Breakpoints disponibles: #{map.keys($breakpoints)}";
+  }
+}
+// Mixin central de display con par�metros personalizables
+@mixin display-flex(
+  $direction: row,
+  $justify: flex-start,
+  $align: stretch,
+  $wrap: nowrap
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+// Variante 1: Display flex centrado (horizontal y vertical)
+@mixin display-center {
+  @include display-flex(row, center, center, nowrap);
+}
+
+// Variante 2: Display flex en columna centrado
+@mixin display-column-center {
+  @include display-flex(column, center, center, nowrap);
+}
+// Variante 3: Display flex en columna con flex-start
+@mixin display-column-flex-start {
+  @include display-flex(column, flex-start, center, nowrap);
+}
+// Variante 3: Display flex en row con flex-start
+@mixin display-row-flex-start {
+  @include display-flex(row, flex-start, center, nowrap);
+}
+
+// ============================================
+// TEXT MIXINS
+// ============================================
+
+// Mixin central de texto con parámetros personalizables
+@mixin text-base(
+  $font-family: v.$font-family-primary,
+  $font-size: v.$font-size-md,
+  $font-weight: v.$font-weight-regular,
+  $line-height: v.$line-height-normal,
+  $color: v.$color-text-primary,
+  $letter-spacing: normal
+) {
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  color: $color;
+  letter-spacing: $letter-spacing;
+}
+
+// Variante 1: Título principal (Hero/H1)
+@mixin text-title {
+  @include text-base(
+    $font-size: v.$font-size-xxxl,
+    $font-weight: v.$font-weight-bold,
+    $line-height: v.$line-height-tight,
+    $letter-spacing: -0.02em
+  );
+}
+
+// Variante 2: Título secundario (H2)
+@mixin text-title-secondary {
+  @include text-base(
+    $font-size: v.$font-size-xxl,
+    $font-weight: v.$font-weight-bold,
+    $line-height: v.$line-height-tight,
+    $letter-spacing: -0.01em
+  );
+  @include responsive("tablet") {
+    font-size: 3.6rem;
+  }
+}
+
+// Variante 3: Subtítulo (H3)
+@mixin text-subtitle {
+  @include text-base(
+    $font-size: v.$font-size-xl,
+    $font-weight: v.$font-weight-semibold,
+    $line-height: v.$line-height-normal
+  );
+}
+
+// Variante 4: Subtítulo pequeño (H4)
+@mixin text-subtitle-small {
+  @include text-base(
+    $font-size: v.$font-size-lg,
+    $font-weight: v.$font-weight-semibold,
+    $line-height: v.$line-height-normal
+  );
+}
+
+// Variante 5: Párrafo normal (body text)
+@mixin text-body {
+  @include text-base(
+    $font-family: v.$font-family-secondary,
+    $font-size: v.$font-size-lg,
+    $font-weight: v.$font-weight-regular,
+    $line-height: v.$line-height-relaxed,
+    $color: v.$color-text-secondary
+  );
+  max-width: 700px;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+
+  @include responsive("tablet") {
+    font-size: v.$font-size-xl;
+  }
+}
+
+// Variante 6: Párrafo pequeño
+@mixin text-body-small {
+  @include text-base(
+    $font-family: v.$font-family-secondary,
+    $font-size: v.$font-size-md,
+    $font-weight: v.$font-weight-regular,
+    $line-height: v.$line-height-loose,
+    $color: v.$color-text-secondary
+  );
+  @include responsive("tablet") {
+    font-size: v.$font-size-lg;
+  }
+}
+
+// Variante 7: Texto de caption/label
+@mixin text-caption {
+  @include text-base(
+    $font-family: v.$font-family-secondary,
+    $font-size: v.$font-size-xs,
+    $font-weight: v.$font-weight-medium,
+    $line-height: v.$line-height-normal,
+    $color: v.$color-text-secondary,
+    $letter-spacing: 0.02em
+  );
+}
+
+// Variante 8: Placeholder text
+@mixin text-placeholder {
+  @include text-base(
+    $font-family: v.$font-family-secondary,
+    $font-size: v.$font-size-sm,
+    $font-weight: v.$font-weight-regular,
+    $line-height: v.$line-height-normal,
+    $color: v.$color-text-secondary
+  );
+  font-style: italic;
+  opacity: 0.7;
+}
+
+// Variante 9: Texto de botón
+@mixin text-button {
+  @include text-base(
+    $font-size: v.$font-size-sm,
+    $font-weight: v.$font-weight-semibold,
+    $line-height: 1,
+    $letter-spacing: 0.05em
+  );
+  text-transform: uppercase;
+}
+
+// Variante 10: Texto con énfasis (destacado)
+@mixin text-emphasis {
+  @include text-base(
+    $font-weight: v.$font-weight-semibold,
+    $color: v.$color-text-accent
+  );
+}
+
+// Variante 11: Texto de link
+@mixin text-link {
+  @include text-base(
+    $font-family: v.$font-family-secondary,
+    $font-weight: v.$font-weight-medium,
+    $color: v.$color-text-accent
+  );
+  text-decoration: underline;
+  cursor: pointer;
+  transition: opacity v.$transition-fast;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

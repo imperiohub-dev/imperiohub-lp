@@ -1,0 +1,73 @@
+// ============================================
+// MENU TEMPLATE THEME
+// Variables custom + mapeo de variables legacy
+// ============================================
+
+// Importamos variables base
+@use "../abstracts/variables" as base;
+
+// ===== MAPEO DE VARIABLES LEGACY (del sistema viejo) =====
+// Estas variables mantienen compatibilidad con MenuTemplate existente
+
+// Spacing (ajustado al sistema viejo - base de 8px)
+$spacing-xs: 0.5rem !default;    // 8px  (vs 0.4rem del nuevo)
+$spacing-sm: 1rem !default;      // 16px (vs 0.8rem del nuevo)
+$spacing-md: 1.5rem !default;    // 24px (vs 1.6rem del nuevo)
+$spacing-lg: 2rem !default;      // 32px (vs 2.4rem del nuevo)
+$spacing-xl: 3rem !default;      // 48px (vs 3.2rem del nuevo)
+$spacing-xxl: 4rem !default;     // 64px (vs 4.8rem del nuevo)
+
+// Colors - mantienen el esquema navideño
+$color-accent: base.$color-accent !default;  // #ffd700 (dorado)
+$color-accent-dark: #c79100 !default;        // Dorado oscuro (nuevo)
+$color-text-primary: base.$color-text-primary !default;
+$color-text-secondary: #b0b0b0 !default;     // Gris específico para menu
+$color-text-inverse: base.$color-text-inverse !default;
+
+$color-bg-dark: #0a0e1a !default;                    // Fondo oscuro específico
+$color-bg-container: rgba(20, 20, 30, 0.95) !default; // Container con transparencia
+$color-bg-item: rgba(255, 255, 255, 0.03) !default;  // Items semitransparentes
+$color-bg-item-hover: rgba(255, 255, 255, 0.05) !default;
+
+$color-border-accent: rgba(255, 215, 0, 0.2) !default;       // Borde dorado suave
+$color-border-accent-strong: rgba(255, 215, 0, 0.5) !default; // Borde dorado fuerte
+
+// Typography - hereda del base con font-family específico
+$font-family-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !default;
+$font-family-secondary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !default;
+
+$font-weight-regular: base.$font-weight-regular !default;
+$font-weight-medium: base.$font-weight-medium !default;
+$font-weight-semibold: base.$font-weight-semibold !default;
+$font-weight-bold: base.$font-weight-bold !default;
+
+$line-height-tight: base.$line-height-tight !default;
+$line-height-normal: base.$line-height-normal !default;
+$line-height-relaxed: 1.8 !default; // vs 1.6 del nuevo
+
+// Border radius - ajustado al sistema viejo
+$border-radius-sm: 4px !default;
+$border-radius-md: 8px !default;
+$border-radius-lg: 12px !default;
+$border-radius-xl: 16px !default;
+$border-radius-circle: 50% !default; // Nuevo para logos
+
+// Transitions - ajustado al sistema viejo
+$transition-fast: 150ms ease !default;    // vs 150ms ease-in-out del nuevo
+$transition-normal: 300ms ease !default;  // vs 250ms ease-in-out del nuevo
+$transition-slow: 500ms ease !default;    // vs 350ms ease-in-out del nuevo
+
+// Shadows - valores legacy
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1) !default;
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15) !default;
+$shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2) !default;
+$shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.5) !default;
+
+// Breakpoints - mapeo al sistema nuevo
+$breakpoint-mobile: 320px !default;
+$breakpoint-tablet: 768px !default;
+$breakpoint-laptop: 1024px !default;
+$breakpoint-desktop: 1440px !default;
+
+// Re-exportar mixins
+@forward "../abstracts/mixin";
