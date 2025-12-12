@@ -1,0 +1,16 @@
+src/
+public/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+.eslintrc*
+.prettierrc*
+tsconfig*.json
+vite.config.ts
+node_modules/
+.git/
+.vscode/
+.idea/
+*.log
+.DS_Store
