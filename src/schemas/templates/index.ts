@@ -7,7 +7,7 @@ export * from './hero-beneficios';
 export * from './home-page-v1';
 
 import { menuTemplate } from './menu';
-import { heroConBeneficiosTemplate } from './hero-beneficios';
+import { heroBeneficiosTemplate } from './hero-beneficios';
 import { homePageV1Template } from './home-page-v1';
 import type { LandingPageTemplate } from '../types';
 
@@ -17,7 +17,7 @@ import type { LandingPageTemplate } from '../types';
  */
 export const allTemplates: LandingPageTemplate[] = [
   menuTemplate,
-  heroConBeneficiosTemplate,
+  heroBeneficiosTemplate,
   homePageV1Template,
 ];
 
@@ -27,6 +27,6 @@ export const allTemplates: LandingPageTemplate[] = [
  */
 export const templatesBySlug: Record<string, LandingPageTemplate> = {
   [menuTemplate.slug]: menuTemplate,
-  [heroConBeneficiosTemplate.slug]: heroConBeneficiosTemplate,
+  [heroBeneficiosTemplate.slug]: heroBeneficiosTemplate,
   [homePageV1Template.slug]: homePageV1Template,
 };

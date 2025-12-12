@@ -44,7 +44,7 @@ export function HeroBeneficiosTemplate({
       )}
 
       {/* CTA Button */}
-      {content.ctas && content.ctas.length > 0 && (
+      {content.ctas && content.ctas.length > 0 && content.ctas[0] && (
         <a
           href={content.ctas[0].url || '#'}
           className={styles.landing_page__cta}

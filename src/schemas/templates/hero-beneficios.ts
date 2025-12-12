@@ -6,7 +6,7 @@ import type { LandingPageTemplate } from '../types';
  * Template ideal para páginas de servicios que quieren mostrar
  * un título principal con un listado de ventajas o beneficios.
  */
-export const heroConBeneficiosTemplate: LandingPageTemplate = {
+export const heroBeneficiosTemplate: LandingPageTemplate = {
   name: 'Hero con Beneficios',
   slug: 'servicios-hero-beneficios',
   schema: {

@@ -53,11 +53,12 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build && npm run build:types",
     "lint": "eslint .",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "build:types": "tsc --project tsconfig.lib.json --emitDeclarationOnly --declaration --outDir dist/types --skipLibCheck && node scripts/copy-types.js"
   },
   "keywords": [
     "landing-pages",
