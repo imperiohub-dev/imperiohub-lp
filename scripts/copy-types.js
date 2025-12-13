@@ -13,34 +13,37 @@ const root = path.join(__dirname, '..');
 async function copyTypes() {
   console.log('📦 Copiando archivos de tipos...');
 
-  // Copiar index.d.ts principal
-  await copyFile(
-    path.join(root, 'dist/types/index.d.ts'),
-    path.join(root, 'dist/index.d.ts')
-  );
+  const typesDir = path.join(root, 'dist/types');
+  const distDir = path.join(root, 'dist');
 
-  // Copiar schemas/index.d.ts
-  await copyFile(
-    path.join(root, 'dist/types/schemas/index.d.ts'),
-    path.join(root, 'dist/schemas/index.d.ts')
-  );
-
-  // Copiar components/index.d.ts
-  await copyFile(
-    path.join(root, 'dist/types/components/index.d.ts'),
-    path.join(root, 'dist/components/index.d.ts')
-  );
-
-  // Copiar generator/index.d.ts
-  await copyFile(
-    path.join(root, 'dist/types/generator/index.d.ts'),
-    path.join(root, 'dist/generator/index.d.ts')
-  );
+  // Copiar recursivamente todos los archivos .d.ts
+  await copyDirRecursive(typesDir, distDir);
 
   // Limpiar carpeta temporal
-  await fs.rm(path.join(root, 'dist/types'), { recursive: true, force: true });
+  await fs.rm(typesDir, { recursive: true, force: true });
 
   console.log('✅ Archivos de tipos copiados correctamente');
+}
+
+/**
+ * Copia recursivamente todos los archivos .d.ts de un directorio
+ */
+async function copyDirRecursive(srcDir, destDir) {
+  const entries = await fs.readdir(srcDir, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const srcPath = path.join(srcDir, entry.name);
+    const relativePath = path.relative(path.join(root, 'dist/types'), srcPath);
+    const destPath = path.join(destDir, relativePath);
+
+    if (entry.isDirectory()) {
+      // Recursión para subdirectorios
+      await copyDirRecursive(srcPath, destDir);
+    } else if (entry.isFile() && entry.name.endsWith('.d.ts')) {
+      // Copiar archivo .d.ts
+      await copyFile(srcPath, destPath);
+    }
+  }
 }
 
 async function copyFile(src, dest) {

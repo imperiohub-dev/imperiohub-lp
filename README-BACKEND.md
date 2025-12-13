@@ -9,6 +9,7 @@ En esta versión se han solucionado todos los problemas reportados:
 | Problema | Estado | Descripción |
 |----------|--------|-------------|
 | ❌ Tipos TypeScript vacíos | ✅ **RESUELTO** | Los archivos `.d.ts` ahora se generan correctamente con todos los exports |
+| ❌ Archivos `.d.ts` intermedios faltantes | ✅ **RESUELTO** | `types.d.ts`, `validators/index.d.ts`, `templates/index.d.ts` ahora existen en dist |
 | ❌ Exports modulares faltantes | ✅ **RESUELTO** | Estructura `dist/schemas/`, `dist/components/`, `dist/generator/` creada |
 | ❌ Dependencia React en Node.js | ✅ **RESUELTO** | React marcado como `external`, no se bundlea en schemas/generator |
 | ❌ Nombre inconsistente | ✅ **RESUELTO** | Export unificado como `heroBeneficiosTemplate` |
@@ -591,6 +592,38 @@ npx tsx test-import.ts
 ✅ Imports funcionando correctamente!
 ```
 
+### **Verificar archivos `.d.ts` intermedios (CRÍTICO):**
+
+Este comando verifica que todos los archivos TypeScript necesarios existan:
+
+```bash
+# En el directorio del paquete (si lo tienes clonado)
+npm run verify
+```
+
+O manualmente verifica que estos archivos existan en `node_modules/@imperiohub/lp-templates/`:
+
+```bash
+ls node_modules/@imperiohub/lp-templates/dist/schemas/
+```
+
+**Deberías ver:**
+```
+index.d.ts          ✅ Entry point principal
+types.d.ts          ✅ CRÍTICO - Definiciones de tipos base
+validators/         ✅ CRÍTICO - Contiene index.d.ts con validadores
+templates/          ✅ CRÍTICO - Contiene index.d.ts + templates individuales
+index.js
+index.cjs
+```
+
+Si **NO** ves `types.d.ts`, `validators/`, o `templates/`, el paquete está mal compilado. Reinstala:
+
+```bash
+rm -rf node_modules/@imperiohub/lp-templates
+npm install @imperiohub/lp-templates@latest
+```
+
 ### **Verificar tipos TypeScript:**
 
 ```bash
@@ -614,6 +647,12 @@ Deberías ver:
 ## 🔄 Changelog
 
 ### **v0.2.3** (Diciembre 2025)
+- ✅ **FIX CRÍTICO**: Archivos `.d.ts` intermedios ahora se copian correctamente
+  - Antes: `dist/schemas/index.d.ts` importaba desde `./types`, `./validators`, `./templates` pero estos archivos NO existían
+  - Ahora: Script `copy-types.js` copia recursivamente TODOS los `.d.ts` incluyendo:
+    - `dist/schemas/types.d.ts` ✅
+    - `dist/schemas/validators/index.d.ts` ✅
+    - `dist/schemas/templates/index.d.ts` + todos los templates individuales ✅
 - ✅ **FIX**: Generación correcta de archivos `.d.ts` para todos los entry points
 - ✅ **FIX**: Estructura de carpetas `dist/schemas/`, `dist/components/`, `dist/generator/`
 - ✅ **FIX**: React no se bundlea en módulos de Node.js (schemas/generator)
