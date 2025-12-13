@@ -1,6 +1,6 @@
 {
   "name": "@imperiohub/lp-templates",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Centralized landing page templates for ImperioHub SaaS platform",
   "type": "module",
   "main": "./dist/index.cjs",
